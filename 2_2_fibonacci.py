@@ -14,7 +14,7 @@ def fib(n):
 
 def main():
     n = int(input())
-    print(fib(n))
+    return fib(n)
 
 # main()
 
@@ -23,6 +23,7 @@ def main():
 # поскольку нас интересует только последняя цифра числа Фибоначчи:
 # если 0≤𝑎,𝑏≤9 0 ≤ a , b ≤ 9  — последние цифры чисел 𝐹𝑖 F i  и 𝐹𝑖+1 F i + 1  соответственно,
 # то (𝑎+𝑏)mod10 ( a + b ) mod 10  — последняя цифра числа 𝐹𝑖+2 F i + 2 .
+
 
 def fib_digit(n):
     f = [0, 1]
@@ -33,7 +34,7 @@ def fib_digit(n):
 
 def main2():
     n = int(input())
-    print(fib_digit(n))
+    return fib_digit(n)
 
 
 # main2()
@@ -63,7 +64,7 @@ def fib_mod(n, m):
 
 def main3():
     n, m = map(int, input().split())
-    print(fib_mod(n, m))
+    return fib_mod(n, m)
 
 
 # main3()
