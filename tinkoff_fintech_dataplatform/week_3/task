@@ -1,0 +1,40 @@
+В хранилище данных есть таблицы:
+- transaction (transaction_id, account_id, amount) - транзакции клиентов ~ 3,5 млрд. записей;
+- account (account_id, account_type_id, client_id, balance) - счета клиентов ~ 40 млн. записей;
+- client (client_id, name) - клиенты ~ 10 млн. записей;
+- account_type (account_type_id, name) - типы счетов ~ 15 записей;
+- account_client_attribute (account_id, client_id, attribute) - атрибуты счетов и клиентов ~ 300 млн. записей - в строках таблицы заполнено либо поле account_id, либо client_id, но никогда оба сразу, процент заполнения account_id - 50%, client_id - 50%, attribute - 100% . Уникальных значений поля attribute - 13.
+
+
+1) Выбрать поле дистрибьюции для каждой таблицы (и обосновать выбор), если мы знаем, что применяться таблицы будут в следующих запросах:
+
+A)
+select a.account_id, sum(t.amount)
+from account a
+left join transaction t
+on a.account_id = t.account_id
+group by a.account_id;
+
+B)
+select c.client_id, count(*)
+from client c
+left join account a
+on c.client_id = a.client_id
+group by c.client_id;
+
+C)
+select count(*)
+from transaction; 
+
+D)
+select a.account_id, at.name
+from account a
+left join account_type at
+on a.account_type_id = at.account_type_id;
+
+E)
+select count(*)
+from account_client_attribute
+where attribute = 'LOAN';
+
+2) Определить тип движения данных для каждого запроса.
