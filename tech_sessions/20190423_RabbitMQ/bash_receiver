@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo Party started!
+python consumer_of_int_for_bash.py 1> out.log 2>err.log
