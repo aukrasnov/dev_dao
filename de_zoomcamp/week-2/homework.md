@@ -39,3 +39,8 @@ ANSWER : 14851920
 ```
 00:35:20.205 | INFO    | Flow run 'turquoise-lyrebird' - Current total rows 14851920
 ```
+
+Question 4. Github Storage Block
+```
+01:42:39.854 | INFO    | Task run 'clean-2c6af9f6-0' - rows: 88605
+```
