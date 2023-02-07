@@ -44,3 +44,14 @@ Question 4. Github Storage Block
 ```
 01:42:39.854 | INFO    | Task run 'clean-2c6af9f6-0' - rows: 88605
 ```
+
+Q5
+```
+01:49:31.145 | INFO    | Task run 'clean-2c6af9f6-0' - rows: 514392
+```
+
+
+Q6:  8
+```
+* * * * * * * *
+```
