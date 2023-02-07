@@ -3,6 +3,7 @@ import pandas as pd
 from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
 from random import randint
+import os
 
 
 @task(retries=3)
@@ -59,4 +60,5 @@ def etl_web_to_gcs() -> None:
 
 
 if __name__ == "__main__":
+    print(os.getcwd())
     etl_web_to_gcs()
