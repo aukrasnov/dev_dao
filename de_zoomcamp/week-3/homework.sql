@@ -47,3 +47,37 @@ q4
  SELECT COUNT(DISTINCT(affiliated_base_number))
  FROM  `de-zoomcamp-3756212.trips_data_all.fhv_tripdata_nonpartitioned`
  WHERE DATE(pickup_datetime) BETWEEN '2019-03-01' AND '2019-03-31'; --647
+
+
+
+
+
+
+ CREATE OR REPLACE EXTERNAL TABLE `de-zoomcamp-3756212.trips_data_all.yellow_tripdata`(
+VendorID STRING
+,tpep_pickup_datetime TIMESTAMP
+,tpep_dropoff_datetime TIMESTAMP
+,store_and_fwd_flag STRING
+,RatecodeID INT64
+,PULocationID INT64
+,DOLocationID INT64
+,passenger_count INT64
+,trip_distance FLOAT64
+,fare_amount FLOAT64
+,extra FLOAT64
+,mta_tax FLOAT64
+,tip_amount FLOAT64
+,tolls_amount FLOAT64
+,ehail_fee FLOAT64
+,improvement_surcharge FLOAT64
+,total_amount FLOAT64
+,payment_type FLOAT64
+,trip_type FLOAT64
+,congestion_surcharge FLOAT64
+ )
+ OPTIONS (
+   format = 'CSV',
+   uris = ['gs://dtc_data_lake_de-zoomcamp-3756212/yellow_tripdata_2019-*.csv']
+ );
+
+

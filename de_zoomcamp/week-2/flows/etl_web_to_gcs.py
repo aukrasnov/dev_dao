@@ -19,8 +19,8 @@ def fetch(dataset_url: str) -> pd.DataFrame:
 @task(log_prints=True)
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
-    df["lpep_pickup_datetime"] = pd.to_datetime(df["lpep_pickup_datetime"])
-    df["lpep_dropoff_datetime"] = pd.to_datetime(df["lpep_dropoff_datetime"])
+    df["tpep_pickup_datetime"] = pd.to_datetime(df["tpep_pickup_datetime"])
+    df["tpep_dropoff_datetime"] = pd.to_datetime(df["tpep_dropoff_datetime"])
     print(df.head(2))
     print(f"columns: {df.dtypes}")
     print(f"rows: {len(df)}")
@@ -44,11 +44,8 @@ def write_gcs(path: Path) -> None:
 
 
 @flow()
-def etl_web_to_gcs() -> None:
+def etl_web_to_gcs(color: str, year: int, month: int) -> None:
     """The main ETL function"""
-    color = "green"
-    year = 2019
-    month = 4
     dataset_file = f"{color}_tripdata_{year}-{month:02}"
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
     print(os.getcwd())
@@ -61,4 +58,12 @@ def etl_web_to_gcs() -> None:
 
 
 if __name__ == "__main__":
-    etl_web_to_gcs()
+    # colors = ["green"]
+    colors = ["yellow"]
+    years = [2019, 2020]
+    months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    for color in colors:
+        for year in years:
+            for month in months:
+                etl_web_to_gcs(color, year, month)
+
